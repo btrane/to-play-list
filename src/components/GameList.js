@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 
+import GameItem from './GameItem'
+
 class GameList extends Component {
   render() {
     const { games } = this.props;
     return (
         <div className="GameList">
-          {games.map(game => <div key={game.id} className={`GameItem ${game.dateCompleted > 0 ? `completed` : ``}`}>{game.title}</div>)}
+          {games.map(game => <GameItem key={game.id} game={game} />)}
         </div>
     );
   }
