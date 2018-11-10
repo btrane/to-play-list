@@ -27,6 +27,7 @@
 
 .GameItem {
   padding-bottom: 10px;
+  cursor: pointer;
 }
 
 .completed {
