@@ -1,24 +1,34 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
+import { deleteGame, toggleComplete } from '../actions'
 
 class GameItem extends Component {
   itemClicked = e => {
-    this.props.onGameCompleted(this.props.game)
+    this.props.toggleComplete(this.props.game)
   }
 
   itemDeleted = e => {
-    this.props.onGameDeleted(this.props.game)
+    this.props.deleteGame(this.props.game)
   }
 
   render() {
-    const { game } = this.props;
-
+    const { game, completed } = this.props;
     return (
         <div className="GameItem">
-          <span className={game.dateCompleted > 0 ? `completed` : ``} onClick={this.itemClicked} >{game.title}</span>
-          <span className="deleteIcon" onClick={this.itemDeleted.bind(this)} role="img" aria-label="delete">🗑</span>
+          <span className={completed ? `completed` : ``} onClick={this.itemClicked} >{game.title}</span>
+          <span className="deleteIcon" onClick={this.itemDeleted} role="img" aria-label="delete">🗑</span>
         </div>
     );
   }
 }
 
-export default GameItem
+// store actions
+const mapDispatchToProps = {
+  deleteGame,
+  toggleComplete,
+}
+
+const MyGameItem = connect(null, mapDispatchToProps)(GameItem)
+
+export default MyGameItem
