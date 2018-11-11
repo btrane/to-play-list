@@ -19,13 +19,13 @@ class GameList extends Component {
   }
 
   render() {
-    const { games, onGameDeleted } = this.props
+    const { games, onGameCompleted, onGameDeleted } = this.props
     return (
         <div className="GameList">
           <div className="AddGame">
             <input className="GameListInput" type="text" onKeyDown={this.keyPress} placeholder="new game" />          
           </div>
-          {games.map(game => <GameItem key={game.id} game={game} onGameDeleted={onGameDeleted} />)}
+          {games.map(game => <GameItem key={game.id} game={game} onGameCompleted={onGameCompleted} onGameDeleted={onGameDeleted} />)}
         </div>
     );
   }
