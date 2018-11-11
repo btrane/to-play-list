@@ -25,6 +25,20 @@
   text-align: left;
 }
 
+.AddGame {
+  margin: 20px 0;
+}
+
+.AddGame input {
+  background: none;
+  color: white;
+  font-size: 18pt;
+  line-height: 1.3em;
+  border: none;
+  border-bottom: 1px dashed white;
+  min-width: 100%;
+}
+
 .GameItem {
   padding-bottom: 10px;
   cursor: pointer;
@@ -34,4 +48,11 @@
   color: orangered;
   text-decoration: line-through;
   opacity: 0.3;
+}
+
+.deleteIcon {
+  font-size: 8pt;
+  line-height: 2em;
+  vertical-align: middle;
+  margin-left: 20px;
 }

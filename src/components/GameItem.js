@@ -9,13 +9,18 @@ class GameItem extends Component {
     this.setState({ completed: !this.state.completed })
   }
 
+  itemDeleted = e => {
+    this.props.onGameDeleted(this.props.game)
+  }
+
   render() {
     const { game } = this.props;
     const { completed } = this.state;
 
     return (
-        <div className={`GameItem ${completed ? `completed` : ``}`} onClick={this.itemClicked}>
-          {game.title}
+        <div className="GameItem">
+          <span className={completed ? `completed` : ``} onClick={this.itemClicked} >{game.title}</span>
+          <span className="deleteIcon" onClick={this.itemDeleted.bind(this)} role="img" aria-label="delete">🗑</span>
         </div>
     );
   }

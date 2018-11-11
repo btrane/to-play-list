@@ -3,11 +3,29 @@ import React, { Component } from 'react'
 import GameItem from './GameItem'
 
 class GameList extends Component {
+  keyPress = e => {
+    // if pressing enter, add a new game with the title
+    if (e.keyCode === 13) {
+      let gameToAdd = {
+        id: Date.now(),
+        title: e.target.value,
+        dateAdded: Date.now()
+      }
+      this.props.onGameAdded(gameToAdd)
+
+      // clear the input
+      e.target.value = ''
+    }
+  }
+
   render() {
-    const { games } = this.props;
+    const { games, onGameDeleted } = this.props
     return (
         <div className="GameList">
-          {games.map(game => <GameItem key={game.id} game={game} />)}
+          <div className="AddGame">
+            <input className="GameListInput" type="text" onKeyDown={this.keyPress} placeholder="new game" />          
+          </div>
+          {games.map(game => <GameItem key={game.id} game={game} onGameDeleted={onGameDeleted} />)}
         </div>
     );
   }
