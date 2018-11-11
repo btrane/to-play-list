@@ -1,5 +1,5 @@
 import initialState from '../stores'
-import { ADD_GAME, DELETE_GAME, TOGGLE_COMPLETE } from '../actions'
+import { ADD_GAME, DELETE_GAME, TOGGLE_COMPLETE } from '../actions/types'
 
 const games = (state = initialState, action) => {
   switch (action.type) {

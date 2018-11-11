@@ -1,6 +1,4 @@
-export const ADD_GAME = 'ADD_GAME'
-export const DELETE_GAME = 'DELETE_GAME'
-export const TOGGLE_COMPLETE = 'TOGGLE_COMPLETE'
+import { ADD_GAME, DELETE_GAME, TOGGLE_COMPLETE } from './types'
 
 export const addGame = game => ({
   type: ADD_GAME,
