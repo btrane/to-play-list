@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 
 import GameItem from './GameItem'
-@observer 
+@inject('gameStore')
+@observer
 class GameList extends Component {
   keyPress = e => {
     // if pressing enter, add a new game with the title
@@ -12,7 +13,7 @@ class GameList extends Component {
         title: e.target.value,
         dateAdded: Date.now()
       }
-      this.props.store.addGame(gameToAdd)
+      this.props.gameStore.addGame(gameToAdd)
 
       // clear the input
       e.target.value = ''
@@ -20,13 +21,13 @@ class GameList extends Component {
   }
 
   render() {
-    const { games } = this.props.store
+    const { games } = this.props.gameStore
     return (
         <div className="GameList">
           <div className="AddGame">
             <input className="GameListInput" type="text" onKeyDown={this.keyPress} placeholder="new game" />          
           </div>
-          {games.map(game => <GameItem key={game.id} game={game} store={this.props.store} completed={game.dateCompleted > 0 ? true : false} />)}
+          {games.map(game => <GameItem key={game.id} game={game} completed={game.dateCompleted > 0 ? true : false} />)}
         </div>
     );
   }

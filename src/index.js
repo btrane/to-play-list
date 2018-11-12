@@ -3,10 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { Provider } from 'mobx-react'
 
 import { gameStore } from './stores/GameStore'
 
-ReactDOM.render(<App store={gameStore} />, document.getElementById('root'));
+ReactDOM.render(
+    <Provider gameStore={gameStore}>
+        <App />
+    </Provider>,
+    document.getElementById('root')
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

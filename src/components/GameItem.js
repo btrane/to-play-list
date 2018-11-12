@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
+import { observer, inject } from 'mobx-react'
 
+@inject('gameStore')
+@observer
 class GameItem extends Component {
   itemClicked = e => {
-    this.props.store.toggleComplete(this.props.game)
+    this.props.gameStore.toggleComplete(this.props.game)
   }
 
   itemDeleted = e => {
-    this.props.store.deleteGame(this.props.game)
+    this.props.gameStore.deleteGame(this.props.game)
   }
 
   render() {
