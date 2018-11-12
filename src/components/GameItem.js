@@ -15,7 +15,7 @@ class GameItem extends Component {
     return (
         <div className="GameItem">
           <span className={game.dateCompleted > 0 ? `completed` : ``} onClick={this.itemClicked} >{game.title}</span>
-          <span className="deleteIcon" onClick={this.itemDeleted.bind(this)} role="img" aria-label="delete">🗑</span>
+          <span className="deleteIcon" onClick={this.itemDeleted} role="img" aria-label="delete">🗑</span>
         </div>
     );
   }
