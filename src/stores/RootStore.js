@@ -1,4 +1,4 @@
-import { types, onSnapshot } from 'mobx-state-tree'
+import { types, onSnapshot, applySnapshot } from 'mobx-state-tree'
 import { values } from 'mobx'
 import { Game } from './GameStore'
 import { Profile } from './ProfileStore'
@@ -25,8 +25,13 @@ const RootStore = types.model({
 
 const rootStore = RootStore.create(initialState)
 
+if (localStorage.getItem('toPlayStore') !== null) {
+  applySnapshot(rootStore, JSON.parse(localStorage.getItem('toPlayStore')))
+}
+
 onSnapshot(rootStore, snapshot => {
-  console.log(snapshot)
+  localStorage.setItem('toPlayStore', JSON.stringify(snapshot))
+  console.log('current snapshot: ', snapshot)
 })
 
 export { rootStore }
