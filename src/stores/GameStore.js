@@ -1,25 +1,16 @@
-import initialStore from './index'
-import { observable } from 'mobx'
+import { types } from 'mobx-state-tree'
 
-class GameStore {
-    @observable games = initialStore.games
+const Game = types.model({
+    id: types.identifierNumber,
+    title: types.optional(types.string, ''),
+    image: types.optional(types.string, ''),
+    timeToBeat: types.optional(types.number, 0),
+    dateAdded: types.optional(types.number, 0),
+    dateCompleted: types.optional(types.number, 0),
+}).actions(self => ({
+    toggleComplete() {
+        self.dateCompleted > 0 ? self.dateCompleted = 0 : self.dateCompleted = Date.now()
+    },
+}))
 
-    // add game
-    addGame(gameToAdd) {
-        this.games.push(gameToAdd)
-    }
-
-    // delete game
-    deleteGame(gameToDelete) {
-        this.games = this.games.filter(game => game.id !== gameToDelete.id)
-    }
-
-    // toggle complete
-    toggleComplete(gameToToggle) {
-        this.games.map(game => game.id === gameToToggle.id ? (game.dateCompleted > 0 ? game.dateCompleted = 0 : game.dateCompleted = Date.now()) : game)
-    }
-}
-
-const gameStore = new GameStore()
-
-export { gameStore }
+export { Game }
