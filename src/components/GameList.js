@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
-import { values } from 'mobx'
 
 import GameItem from './GameItem'
 @inject('store')
@@ -22,13 +21,15 @@ class GameList extends Component {
   }
 
   render() {
-    const { games } = this.props.store
+    const { completeGames, incompleteGames } = this.props.store
     return (
         <div className="GameList">
           <div className="AddGame">
             <input className="GameListInput" type="text" onKeyDown={this.keyPress} placeholder="new game" />          
           </div>
-          {values(games).map(game => <GameItem key={game.id} game={game} completed={game.dateCompleted > 0 ? true : false} />)}
+          {incompleteGames.map(game => <GameItem key={game.id} game={game} completed={game.dateCompleted > 0 ? true : false} />)}
+          <hr />
+          {completeGames.map(game => <GameItem key={game.id} game={game} completed={game.dateCompleted > 0 ? true : false} />)}
         </div>
     );
   }
