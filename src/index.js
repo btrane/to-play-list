@@ -5,10 +5,10 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'mobx-react'
 
-import { gameStore } from './stores/GameStore'
+import { rootStore } from './stores/RootStore'
 
 ReactDOM.render(
-    <Provider gameStore={gameStore}>
+    <Provider store={rootStore}>
         <App />
     </Provider>,
     document.getElementById('root')
