@@ -21,14 +21,16 @@ class GameList extends Component {
   }
 
   render() {
-    const { completeGames, incompleteGames } = this.props.store
+    const { completeGames, incompleteGames, totalTimeIncomplete, totalTimeComplete } = this.props.store
     return (
         <div className="GameList">
           <div className="AddGame">
-            <input className="GameListInput" type="text" onKeyDown={this.keyPress} placeholder="new game" />          
+            <input className="GameListInput" type="text" onKeyDown={this.keyPress} placeholder="add new game..." />          
           </div>
+          <div className="ListHeader">It will take you {totalTimeIncomplete} hours to complete all of your games.</div>
           {incompleteGames.map(game => <GameItem key={game.id} game={game} completed={game.dateCompleted > 0 ? true : false} />)}
           <hr />
+          <div className="ListHeader">You have spent {totalTimeComplete} hours playing these games.</div>
           {completeGames.map(game => <GameItem key={game.id} game={game} completed={game.dateCompleted > 0 ? true : false} />)}
         </div>
     );

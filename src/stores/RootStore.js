@@ -13,14 +13,24 @@ const RootStore = types.model({
   },
   deleteGame(gameToDelete) {
     self.games.delete(gameToDelete.id)
-  }
+  },
 })).views(self => ({
   get completeGames() {
     return values(self.games).filter(game => game.dateCompleted > 0)
   },
   get incompleteGames() {
     return values(self.games).filter(game => game.dateCompleted === 0)
-  }
+  },
+  get totalTimeIncomplete() {
+    let total = 0
+    values(self.games).filter(game => game.dateCompleted === 0).map(game => total += game.timeToBeat)
+    return total
+  },
+  get totalTimeComplete () {
+    let total = 0
+    values(self.games).filter(game => game.dateCompleted > 0).map(game => total += game.timeToBeat)
+    return total
+  },
 }))
 
 const rootStore = RootStore.create(initialState)

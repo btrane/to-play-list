@@ -39,9 +39,24 @@
   min-width: 100%;
 }
 
+.ListHeader {
+  margin-bottom: 15px;
+  font-style: italic;
+  font-size: 16pt;
+}
+
 .GameItem {
   padding-bottom: 10px;
   cursor: pointer;
+}
+
+.GameTime {
+  font-weight: bold;
+  color: aquamarine;
+  text-align: right;
+  margin-right: 15px;
+  width: 70px;
+  display: inline-block;
 }
 
 .completed {
