@@ -5,8 +5,22 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'mobx-react'
 import makeInspectable from 'mobx-devtools-mst'
+import { applySnapshot, onSnapshot } from 'mobx-state-tree'
 
-import { rootStore } from './stores/RootStore'
+import { RootStore } from './stores/RootStore'
+import { initialState } from './stores'
+
+const rootStore = RootStore.create(initialState)
+
+// add persistence
+if (localStorage.getItem('toPlayStore') !== null) {
+  applySnapshot(rootStore, JSON.parse(localStorage.getItem('toPlayStore')))
+}
+
+onSnapshot(rootStore, snapshot => {
+  localStorage.setItem('toPlayStore', JSON.stringify(snapshot))
+  // console.log('current snapshot: ', snapshot)
+})
 
 // use MST-specific tools in 
 makeInspectable(rootStore)
