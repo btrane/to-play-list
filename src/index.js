@@ -4,8 +4,12 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'mobx-react'
+import makeInspectable from 'mobx-devtools-mst'
 
 import { rootStore } from './stores/RootStore'
+
+// use MST-specific tools in 
+makeInspectable(rootStore)
 
 ReactDOM.render(
     <Provider store={rootStore}>
