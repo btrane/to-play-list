@@ -13,7 +13,7 @@ class GameItem extends Component {
   }
 
   render() {
-    const { game, completed } = this.props;
+    const { game, completed } = this.props
 
     return (
         <div className="GameItem">

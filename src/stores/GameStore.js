@@ -1,4 +1,5 @@
-import { types } from 'mobx-state-tree'
+import { types, flow } from 'mobx-state-tree'
+import { HowLongToBeatService, HowLongToBeatEntry } from 'howlongtobeat';
 
 const Game = types.model({
     id: types.identifierNumber,
@@ -11,6 +12,17 @@ const Game = types.model({
     toggleComplete() {
         self.dateCompleted > 0 ? self.dateCompleted = 0 : self.dateCompleted = Date.now()
     },
+    updateTimeToBeat: flow(function* updateTimeToBeat() {        
+        let hltbService = new HowLongToBeatService()
+        let res = yield hltbService.search(self.title)
+
+        if (res && res.length > 0) {
+            console.log('hltb result = ', res)
+            self.timeToBeat = res[0].gameplayMain
+            self.image = res[0].imageUrl
+            console.log('Time to beat = ', self.timeToBeat)
+        }
+    }),
 }))
 
 export { Game }
