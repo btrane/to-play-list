@@ -33,15 +33,4 @@ const RootStore = types.model({
   },
 }))
 
-const rootStore = RootStore.create(initialState)
-
-if (localStorage.getItem('toPlayStore') !== null) {
-  applySnapshot(rootStore, JSON.parse(localStorage.getItem('toPlayStore')))
-}
-
-onSnapshot(rootStore, snapshot => {
-  localStorage.setItem('toPlayStore', JSON.stringify(snapshot))
-  console.log('current snapshot: ', snapshot)
-})
-
-export { rootStore }
+export { RootStore }
