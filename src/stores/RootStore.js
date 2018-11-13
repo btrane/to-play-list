@@ -25,4 +25,8 @@ const RootStore = types.model({
 
 const rootStore = RootStore.create(initialState)
 
+onSnapshot(rootStore, snapshot => {
+  console.log(snapshot)
+})
+
 export { rootStore }
