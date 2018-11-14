@@ -1,8 +1,7 @@
-import { types, onSnapshot, applySnapshot } from 'mobx-state-tree'
+import { types } from 'mobx-state-tree'
 import { values } from 'mobx'
 import { Game } from './GameStore'
 import { Profile } from './ProfileStore'
-import initialState from '.';
 
 const RootStore = types.model({
   games: types.map(Game),

@@ -8,7 +8,7 @@ import makeInspectable from 'mobx-devtools-mst'
 import { applySnapshot, onSnapshot } from 'mobx-state-tree'
 
 import { RootStore } from './stores/RootStore'
-import { initialState } from './stores'
+import initialState from './stores'
 
 const rootStore = RootStore.create(initialState)
 

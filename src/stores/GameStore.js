@@ -1,5 +1,5 @@
 import { types, flow } from 'mobx-state-tree'
-import { HowLongToBeatService, HowLongToBeatEntry } from 'howlongtobeat';
+import { HowLongToBeatService } from 'howlongtobeat';
 
 const Game = types.model({
     id: types.identifierNumber,
