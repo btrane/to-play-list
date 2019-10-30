@@ -1,14 +1,9 @@
-const { injectBabelPlugin } = require('react-app-rewired');
+const {
+  override,
+  addDecoratorsLegacy
+} = require('customize-cra');
 
-module.exports = function override(config, env) {
-
+module.exports = override(
   // allow decorators
-  config = injectBabelPlugin([
-    '@babel/plugin-proposal-decorators',
-    {
-      legacy: true
-    }
-  ], config)
-
-  return config
-}
+  addDecoratorsLegacy()
+);
